@@ -21,7 +21,7 @@ class ListViewBestSellerItem extends StatelessWidget {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.22,
-              child: const ListViewBookItem(),
+              child: const BookItem(),
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.09,

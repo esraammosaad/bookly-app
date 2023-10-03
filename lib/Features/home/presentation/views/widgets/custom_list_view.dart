@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:go_router/go_router.dart';
+import '../../../../../core/utilis/app_routes.dart';
 import 'list_view_book_item.dart';
 class CustomListView extends StatelessWidget {
   const CustomListView({Key? key}) : super(key: key);
@@ -22,7 +23,12 @@ class CustomListView extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.4,
 
 
-                child: const ListViewBookItem()),
+                child: GestureDetector(
+                    onTap: (){
+                      context.push(AppRoutes.bookDetailsView);
+
+                    },
+                    child: const BookItem())),
           ),
         ),
       ),

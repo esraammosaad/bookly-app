@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utilis/styles.dart';
 class CustomPriceRow extends StatelessWidget {
   const CustomPriceRow({

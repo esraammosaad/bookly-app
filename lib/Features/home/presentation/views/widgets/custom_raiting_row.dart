@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../../../core/utilis/styles.dart';
 class CustomRatingRow extends StatelessWidget {
   const CustomRatingRow({
@@ -10,6 +9,7 @@ class CustomRatingRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
 
       children: [
         const Icon(

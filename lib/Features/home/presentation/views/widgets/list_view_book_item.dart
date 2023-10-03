@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utilis/assets_data.dart';
-class ListViewBookItem extends StatelessWidget {
-  const ListViewBookItem({Key? key}) : super(key: key);
+class BookItem extends StatelessWidget {
+  const BookItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utilis/assets_data.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({

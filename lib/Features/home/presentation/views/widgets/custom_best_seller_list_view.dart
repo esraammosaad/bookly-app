@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'list_view_best_seller_item.dart';
 
 class CustomBestSellerListView extends StatelessWidget {
