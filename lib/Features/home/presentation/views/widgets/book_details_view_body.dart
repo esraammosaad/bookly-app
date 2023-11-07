@@ -1,14 +1,30 @@
+import 'package:bookly_app/Features/home/data/models/book_model.dart';
+import 'package:bookly_app/Features/home/presentation/view_models/related_books_cubit/related_books_cubit.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/custom_raiting_row.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/list_view_book_item.dart';
-import 'package:bookly_app/core/utilis/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../../core/utils/styles.dart';
 import 'custom_book_details_app_bar.dart';
 import 'custom_book_details_list_view.dart';
 import 'custom_button_row.dart';
 
-class BookDetailsViewBody extends StatelessWidget {
-  const BookDetailsViewBody({Key? key}) : super(key: key);
+class BookDetailsViewBody extends StatefulWidget {
+  const BookDetailsViewBody({Key? key, required this.item}) : super(key: key);
+  final BookModel item;
+
+  @override
+  State<BookDetailsViewBody> createState() => _BookDetailsViewBodyState();
+}
+
+class _BookDetailsViewBodyState extends State<BookDetailsViewBody> {
+  @override
+  void initState() {
+    BlocProvider.of<RelatedBooksCubit>(context)
+        .getRelatedBooks(bookTitle: widget.item.volumeInfo?.title!??'');
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +48,16 @@ class BookDetailsViewBody extends StatelessWidget {
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
-                      child: const BookItem(),
+                      child: BookItem(
+                          image: widget.item.volumeInfo?.imageLinks?.thumbnail ??
+                              ''),
                     ),
                     const SizedBox(
                       height: 45,
                     ),
                     Text(
-                      'The Jungle Book',
+                      widget.item.volumeInfo.title ?? '',
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.spectral(
                         textStyle: Styles.textStyle30,
                       ),
@@ -46,7 +65,7 @@ class BookDetailsViewBody extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    Text('Rudyard Kipling',
+                    Text(widget.item.volumeInfo.publisher ?? '',
                         style: Styles.textStyle18.copyWith(
                             fontWeight: FontWeight.normal,
                             color: Colors.white.withOpacity(0.7))),
@@ -57,7 +76,7 @@ class BookDetailsViewBody extends StatelessWidget {
                     const SizedBox(
                       height: 37,
                     ),
-                    const CustomButtonRow(),
+                     CustomButtonRow(bookUrl: widget.item.accessInfo.webReaderLink??''),
                     const SizedBox(
                       height: 51,
                     ),

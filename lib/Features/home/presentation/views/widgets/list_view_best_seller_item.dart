@@ -1,12 +1,14 @@
+import 'package:bookly_app/Features/home/data/models/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'custom_raiting_row.dart';
-import '../../../../../core/utilis/styles.dart';
+import '../../../../../core/utils/styles.dart';
 import 'custom_price_row.dart';
 import 'list_view_book_item.dart';
 
 class ListViewBestSellerItem extends StatelessWidget {
-  const ListViewBestSellerItem({Key? key}) : super(key: key);
+  const ListViewBestSellerItem({Key? key, required this.item}) : super(key: key);
+  final BookModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class ListViewBestSellerItem extends StatelessWidget {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.22,
-              child: const BookItem(),
+              child:  BookItem(image: item.volumeInfo.imageLinks?.thumbnail??''),
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.09,
@@ -33,7 +35,7 @@ class ListViewBestSellerItem extends StatelessWidget {
                   SizedBox(
                       width: MediaQuery.of(context).size.width * 0.5,
                       child: Text(
-                        'Harry Potter and the Goblet of Fire',
+                        item.volumeInfo.title??'',
                         style: GoogleFonts.spectral(
                           textStyle: Styles.textStyle20,
                         ),
@@ -43,17 +45,17 @@ class ListViewBestSellerItem extends StatelessWidget {
                   Opacity(
                       opacity: 0.7,
                       child: Text(
-                        'J.K. Rowling',
+                        item.volumeInfo.publisher??'',
                         style: Styles.textStyle14,
                       )),
                   const SizedBox(
                     height: 8,
                   ),
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CustomPriceRow(),
-                      CustomRatingRow(),
+                      CustomPriceRow(price: item.saleInfo.saleability!),
+                      const CustomRatingRow(),
                     ],
                   )
                 ],

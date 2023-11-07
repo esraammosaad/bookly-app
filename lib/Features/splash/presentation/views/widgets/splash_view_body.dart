@@ -1,8 +1,9 @@
 import 'dart:async';
-import 'package:bookly_app/core/utilis/assets_data.dart';
-import 'package:bookly_app/core/utilis/app_routes.dart';
+import 'package:bookly_app/core/utils/assets_data.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../../core/utils/app_routes.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({Key? key}) : super(key: key);

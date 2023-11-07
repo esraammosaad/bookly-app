@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/utilis/styles.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../../../../core/utils/styles.dart';
 import 'custom_button.dart';
 class CustomButtonRow extends StatelessWidget {
   const CustomButtonRow({
-    super.key,
+    super.key, required this.bookUrl,
   });
+  final String bookUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -12,20 +14,31 @@ class CustomButtonRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomButton(
-          text: '19.99€',
+          text: 'Free',
           right: 0,
           left: 16,
           backGroundColor: Colors.white,
-          textStyle: Styles.textStyle15
+          textStyle: Styles.textStyle16
               .copyWith(fontWeight: FontWeight.bold, color: Colors.black),
         ),
-        CustomButton(
-          text: 'Free preview',
-          right: 16,
-          left: 0,
-          backGroundColor: const Color(0xffEF8262),
-          textStyle: Styles.textStyle16
-              .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+        GestureDetector(
+          onTap: ()async{
+            final Uri url = Uri.parse(bookUrl);
+
+              if (await canLaunchUrl(url)) {
+                launchUrl(url);
+              }
+
+
+          },
+          child: CustomButton(
+            text: 'Preview',
+            right: 16,
+            left: 0,
+            backGroundColor: const Color(0xffEF8262),
+            textStyle: Styles.textStyle16
+                .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
         )
       ],
     );
